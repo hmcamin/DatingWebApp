@@ -18,13 +18,20 @@ import { ListsComponent } from './lists/lists.component';
 import { appRoutes } from '@./routes';
 import { AuthGuard } from './_guards/auth.guard'
 import { UserService } from './_services/user.service'
+import { MessagesComponent } from './messages/messages.component';
+import { MemberCardComponent } from './members/member-card/member-card.component';
+
 
 @NgModule({
    declarations: [
       AppComponent,
 	  NavComponent,
 	  HomeComponent,
-	  RegisterComponent
+	  RegisterComponent,
+	  MemberListComponent,
+      ListsComponent,
+      MessagesComponent,
+      MemberCardComponent
    ],
    imports: [
       BrowserModule,
