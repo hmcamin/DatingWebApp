@@ -13,5 +13,11 @@ import { AuthService } from '../../_services/auth.service';
   styleUrls: ['./member-edit.component.css']
 })
 export class MemberEditComponent implements OnInit {
-  
+  user: User;
+
+  constructor( private route: ActivatedRoute ) { }
+
+  ngOnInit() {
+    this.route.data.subscribe(data => this.user = data['user']);
+  }
 }
