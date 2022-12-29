@@ -13,11 +13,23 @@ import { AuthService } from '../../_services/auth.service';
   styleUrls: ['./member-edit.component.css']
 })
 export class MemberEditComponent implements OnInit {
+  @ViewChild('editForm') editForm: NgForm;
   user: User;
+  
 
-  constructor( private route: ActivatedRoute ) { }
+  constructor(
+    private route: ActivatedRoute,
+    private alertifyService: AlertifyService,
+    private userService: UserService,
+    private authService: AuthService
+  ) { }
 
   ngOnInit() {
     this.route.data.subscribe(data => this.user = data['user']);
+  }
+
+  updateUser() {
+    this.alertifyService.success('Profile updated successfully.');
+    this.editForm.reset(this.user);
   }
 }
