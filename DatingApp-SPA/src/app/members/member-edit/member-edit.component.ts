@@ -32,11 +32,22 @@ export class MemberEditComponent implements OnInit {
 
   ngOnInit() {
     this.route.data.subscribe(data => this.user = data['user']);
-    
+    this.authService.currentPhotoUrl.subscribe(photoUrl => {
+      if (this.user) {
+        this.user.photoUrl = photoUrl;
+      }
+      this.photoUrl = photoUrl;
+    });
   }
 
   updateUser() {
-    this.alertifyService.success('Profile updated successfully.');
-    this.editForm.reset(this.user);
+    this.userService.updateUser(this.authService.decodedToken.nameid, this.user).
+      subscribe(
+        next => {
+          this.alertifyService.success('Profile updated successfully.');
+          this.editForm.reset(this.user);
+        },
+        error => this.alertifyService.error(error)
+      );
   }
 }
